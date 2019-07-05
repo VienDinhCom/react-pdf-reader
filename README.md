@@ -1,3 +1,6 @@
+### Demo link
+You can take a look at the demo here: https://reader-zone-test.netlify.com/
+
 ### `npm run dev`
 
 Runs the app in the development mode.<br>
