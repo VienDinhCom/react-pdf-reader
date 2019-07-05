@@ -29,7 +29,7 @@ export default function PDFViewer({ file }) {
   return (
     <div>
       <PDF
-        file={URL.createObjectURL(file)}
+        file={file.pdfURL}
         page={currentPage}
         onDocumentComplete={pages => setPages(pages)}
       />

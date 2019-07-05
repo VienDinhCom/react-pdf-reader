@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PDFViewer from './PDFViewer';
+import PlainTextViewer from './PlainTextViewer';
 import classes from './Content.module.scss';
 import fileIcon from '../../images/file-icon.svg';
 
@@ -7,10 +8,26 @@ import fileIcon from '../../images/file-icon.svg';
 //   return;
 // }
 
-// function renderPlainTextFile(file) {
-//   const reader = new window.FileReaderSync();
+// function PlainTextViewer({ file }) {
+//   const [fileContent, setFileContent] = useState('asdasdas');
 
-//   return reader.readAsText(file);
+//   function _loadFile() {
+//     const reader = new FileReader();
+//     reader.readAsText(file);
+
+//     reader.onload(() => {
+//       console.log(reader.result);
+//       setFileContent(reader.result);
+//     });
+
+//     console.log(12121);
+//   }
+
+//   useContext(() => {
+//     _loadFile;
+//   }, []);
+
+//   return <div>{fileContent}</div>;
 // }
 
 export default function Content({ file }) {
@@ -28,7 +45,12 @@ export default function Content({ file }) {
             {file.name}
           </h1>
           <div className={classes.content}>
-            <PDFViewer file={file}></PDFViewer>
+            {file.type === 'text/plain' && (
+              <PlainTextViewer file={file}></PlainTextViewer>
+            )}
+            {file.type === 'application/pdf' && (
+              <PDFViewer file={file}></PDFViewer>
+            )}
           </div>
         </>
       ) : (
