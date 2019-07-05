@@ -4,19 +4,27 @@ import logo from '../../images/logo.png';
 import fileIcon from '../../images/file-icon-sm.svg';
 import uploadIcon from '../../images/upload-icon.svg';
 
-function renderFile(name, size) {
-  return (
-    <li className={classes.fileItem}>
-      <img className={classes.fileImage} src={fileIcon} alt="{name}" />
-      <div className={classes.fileInfo}>
-        <h3 className={classes.fileName}>{name}</h3>
-        <span className={classes.fileSize}>{size}</span>
-      </div>
-    </li>
-  );
-}
+export default function Sidebar({
+  getFiles,
+  files,
+  activeFileId,
+  setActiveFileId,
+}) {
+  const fileArray = [];
 
-export default function Sidebar() {
+  // console.log(files);
+
+  for (const id in files) {
+    if (files.hasOwnProperty(id)) {
+      const file = files[id];
+
+      fileArray.push({
+        file,
+        id,
+      });
+    }
+  }
+
   return (
     <aside className={classes.root}>
       <header className={classes.header}>
@@ -25,9 +33,30 @@ export default function Sidebar() {
       <section className={classes.body}>
         <div className={classes.fileListHeader}>Files</div>
         <ul className={classes.fileList}>
-          {renderFile('Hello', '11Mb')}
-          {renderFile('Hello', '11Mb')}
-          {renderFile('Hello', '11Mb')}
+          {fileArray.map(({ file, id }) => (
+            <li
+              key={id}
+              className={
+                classes.fileItem +
+                (parseInt(id) === parseInt(activeFileId)
+                  ? ` ${classes.fileItemActive}`
+                  : '')
+              }
+              onClick={() => setActiveFileId(id)}
+            >
+              <img
+                className={classes.fileImage}
+                src={fileIcon}
+                alt="{file.name}"
+              />
+              <div className={classes.fileInfo}>
+                <h3 className={classes.fileName}>{file.name}</h3>
+                <span className={classes.fileSize}>
+                  {(file.size / 1024).toFixed(2)} Kb
+                </span>
+              </div>
+            </li>
+          ))}
         </ul>
       </section>
       <footer className={classes.footer}>
@@ -36,6 +65,8 @@ export default function Sidebar() {
             className={classes.uploadInput}
             id="uploadFile"
             type="file"
+            onChange={event => getFiles(event.target.files[0])}
+            accept="application/pdf"
           ></input>
           <img
             className={classes.uploadIcon}
