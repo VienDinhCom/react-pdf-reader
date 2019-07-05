@@ -19,8 +19,8 @@ export default function PDFViewer({ file }) {
   function _nextPage(params) {
     const newPage = currentPage + 1;
 
-    if (newPage > 8) {
-      setCurrentPage(8);
+    if (newPage > pages) {
+      setCurrentPage(pages);
     } else {
       setCurrentPage(newPage);
     }
