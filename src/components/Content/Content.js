@@ -1,34 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import PDFViewer from './PDFViewer';
 import PlainTextViewer from './PlainTextViewer';
 import classes from './Content.module.scss';
 import fileIcon from '../../images/file-icon.svg';
-
-// function readPlainTextFile() {
-//   return;
-// }
-
-// function PlainTextViewer({ file }) {
-//   const [fileContent, setFileContent] = useState('asdasdas');
-
-//   function _loadFile() {
-//     const reader = new FileReader();
-//     reader.readAsText(file);
-
-//     reader.onload(() => {
-//       console.log(reader.result);
-//       setFileContent(reader.result);
-//     });
-
-//     console.log(12121);
-//   }
-
-//   useContext(() => {
-//     _loadFile;
-//   }, []);
-
-//   return <div>{fileContent}</div>;
-// }
 
 export default function Content({ file }) {
   return (
