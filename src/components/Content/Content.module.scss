@@ -3,6 +3,10 @@
   height: 100vh;
   overflow-y: auto;
   flex: 1;
+
+  @media (max-width: 1024px) {
+    padding: 0 23px;
+  }
 }
 
 .title {
