@@ -6,7 +6,7 @@ export default function PDFViewer({ file }) {
   const [pages, setPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  function _previousPage(params) {
+  function _previousPage() {
     const newPage = currentPage - 1;
 
     if (newPage < 1) {
@@ -16,7 +16,7 @@ export default function PDFViewer({ file }) {
     }
   }
 
-  function _nextPage(params) {
+  function _nextPage() {
     const newPage = currentPage + 1;
 
     if (newPage > pages) {
