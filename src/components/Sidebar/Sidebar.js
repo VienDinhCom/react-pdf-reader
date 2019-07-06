@@ -65,7 +65,9 @@ export default function Sidebar({
             className={classes.uploadInput}
             id="uploadFile"
             type="file"
-            onChange={event => getFiles(event.target.files[0])}
+            onChange={event => {
+              if (event.target.files.length) getFiles(event.target.files[0]);
+            }}
             accept="application/pdf,text/plain"
           ></input>
           <img
