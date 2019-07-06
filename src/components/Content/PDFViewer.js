@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import PDF from 'react-pdf-js';
+import React, { useState, useRef } from 'react';
+import { usePdf } from 'react-pdf-js';
 import classes from './PDFViewer.module.scss';
 
 export default function PDFViewer({ file }) {
+  const canvasEl = useRef(null);
   const [pages, setPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  usePdf({
+    file: file.pdfURL,
+    onDocumentComplete: pages => setPages(pages),
+    page: currentPage,
+    canvasEl,
+  });
 
   function _previousPage() {
     const newPage = currentPage - 1;
@@ -27,12 +35,8 @@ export default function PDFViewer({ file }) {
   }
 
   return (
-    <div>
-      <PDF
-        file={file.pdfURL}
-        page={currentPage}
-        onDocumentComplete={pages => setPages(pages)}
-      />
+    <>
+      <canvas className={classes.canvas} ref={canvasEl} />
       <div className={classes.buttons}>
         <button onClick={_previousPage}>Previous Page</button>
         &nbsp;&nbsp;&nbsp;
@@ -40,6 +44,6 @@ export default function PDFViewer({ file }) {
         &nbsp;&nbsp;&nbsp;
         <button onClick={_nextPage}>Next Page</button>
       </div>
-    </div>
+    </>
   );
 }

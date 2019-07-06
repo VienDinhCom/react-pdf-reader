@@ -1,8 +1,26 @@
 .root {
-  padding: 0 80px;
   height: 100vh;
   overflow-y: auto;
   flex: 1;
+}
+
+.header {
+  padding: 23px;
+  text-align: center;
+  background: #080447;
+  margin-bottom: -20px;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.body {
+  padding: 0 80px;
 
   @media (max-width: 1024px) {
     padding: 0 23px;
@@ -30,4 +48,12 @@
 .none {
   margin-top: 75px;
   font-size: 18px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.noneSmallText {
+  font-size: 14px;
 }

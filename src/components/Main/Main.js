@@ -69,7 +69,7 @@ export default function Main() {
         activeFileId={activeFileId}
         setActiveFileId={id => setActiveFileId(id)}
       ></Sidebar>
-      <Content file={files[activeFileId]}></Content>
+      <Content file={files[activeFileId]} getFiles={_addFiles}></Content>
     </main>
   );
 }

@@ -4,6 +4,10 @@
   width: 384px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .header {
@@ -78,31 +82,6 @@
 
 .fileSize {
   color: #4951b8;
-}
-
-.upload {
-  width: 305px;
-  height: 70px;
-  background: #F7B633;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 70px;
-  color: #FFFFFF;
-  display: inline-block;
-
-  :hover {
-    cursor: pointer;
-  }
-}
-
-.uploadInput {
-  display: none;
-}
-
-.uploadIcon {
-  margin-right: 15px;
 }
 
 .footer {

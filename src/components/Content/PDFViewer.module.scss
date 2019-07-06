@@ -1,3 +1,10 @@
+.canvas {
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
 .buttons {
   margin-top: 20px;
 }
