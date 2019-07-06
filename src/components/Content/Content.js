@@ -28,7 +28,7 @@ export default function Content({ file }) {
           </div>
         </>
       ) : (
-        <p>Please upload a file!</p>
+        <p className={classes.none}>Please upload a file!</p>
       )}
     </article>
   );
