@@ -1,5 +1,9 @@
-### Demo link
+## Demo link
 You can take a look at the demo here: https://reader-zone-test.netlify.com/
+
+I'm still improving the test on [mobile-ui](https://github.com/Maxvien/reader-zone/tree/mobile-ui) branch. You can take a look at it here: https://deploy-preview-1--reader-zone-test.netlify.com/
+
+## Usage
 
 ### `npm run dev`
 
