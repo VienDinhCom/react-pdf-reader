@@ -37,7 +37,7 @@ export default function PDFViewer({ file }) {
     _scaleCanvas();
 
     return () => clearTimeout(timeOutId);
-  }, [windowSize, loading]);
+  }, [windowSize, loading, currentPage]);
 
   function _previousPage() {
     const newPage = currentPage - 1;
