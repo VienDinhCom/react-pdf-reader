@@ -4,12 +4,10 @@ import classes from './PDFViewer.module.scss';
 
 export default function PDFViewer({ file }) {
   const canvasEl = useRef(null);
-  const [pages, setPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  usePdf({
+  const [loading, numPages] = usePdf({
     file: file.pdfURL,
-    onDocumentComplete: pages => setPages(pages),
     page: currentPage,
     canvasEl,
   });
@@ -27,11 +25,15 @@ export default function PDFViewer({ file }) {
   function _nextPage() {
     const newPage = currentPage + 1;
 
-    if (newPage > pages) {
-      setCurrentPage(pages);
+    if (newPage > numPages) {
+      setCurrentPage(numPages);
     } else {
       setCurrentPage(newPage);
     }
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   return (
