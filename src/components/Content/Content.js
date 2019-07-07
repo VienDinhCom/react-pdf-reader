@@ -6,6 +6,7 @@ import fileIcon from '../../images/file-icon.svg';
 import UploadButton from '../UploadButton/UploadButton';
 import logo from '../../images/logo.png';
 import fileIconSm from '../../images/file-icon-sm.svg';
+import useMedia from '../../hooks/useMedia';
 
 export default function Content({
   activeFileId,
@@ -27,19 +28,27 @@ export default function Content({
     }
   }
 
+  const isMobile = useMedia(
+    ['(max-width: 1024px)', '(min-width: 1025px)'],
+    [true, false],
+    false
+  );
+
   return (
     <article className={classes.root}>
-      <header className={classes.header}>
-        <div>
-          <img
-            className={classes.logo}
-            src={logo}
-            height={50}
-            alt="Reader Zone"
-          />
-        </div>
-        <UploadButton getFiles={getFiles}></UploadButton>
-      </header>
+      {isMobile && (
+        <header className={classes.header}>
+          <div>
+            <img
+              className={classes.logo}
+              src={logo}
+              height={50}
+              alt="Reader Zone"
+            />
+          </div>
+          <UploadButton getFiles={getFiles}></UploadButton>
+        </header>
+      )}
       <section className={classes.body}>
         {activeFile ? (
           <>
@@ -68,7 +77,7 @@ export default function Content({
           </div>
         )}
       </section>
-      {fileArray.length > 0 && (
+      {fileArray.length > 0 && isMobile && (
         <footer className={classes.footer}>
           <h2 className={classes.footerTitle}>Files</h2>
           <ul className={classes.fileList}>
