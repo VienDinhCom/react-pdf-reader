@@ -17,23 +17,27 @@ export default function PDFViewer({ file }) {
   });
 
   function _scaleCanvas() {
-    if (canvasEl.current) {
-      clearTimeout(timeOutId);
+    clearTimeout(timeOutId);
 
-      timeOutId = setTimeout(() => {
-        const ratio =
-          parseFloat(canvasEl.current.clientWidth) /
-          parseFloat(canvasEl.current.getAttribute('width'));
-        const newHeight =
-          parseFloat(canvasEl.current.getAttribute('height')) * ratio;
+    timeOutId = setTimeout(() => {
+      if (canvasEl.current === null) return;
 
-        canvasEl.current.removeAttribute('style');
-        canvasEl.current.style.height = newHeight;
-      }, 500);
-    }
+      const ratio =
+        parseFloat(canvasEl.current.clientWidth) /
+        parseFloat(canvasEl.current.getAttribute('width'));
+      const newHeight =
+        parseFloat(canvasEl.current.getAttribute('height')) * ratio;
+
+      canvasEl.current.removeAttribute('style');
+      canvasEl.current.style.height = newHeight;
+    }, 1000);
   }
 
-  useEffect(() => _scaleCanvas(), [windowSize, loading]);
+  useEffect(() => {
+    _scaleCanvas();
+
+    return () => clearTimeout(timeOutId);
+  }, [windowSize, loading]);
 
   function _previousPage() {
     const newPage = currentPage - 1;

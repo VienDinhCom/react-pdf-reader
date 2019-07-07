@@ -46,7 +46,7 @@ export default function Content({
             <img
               className={classes.logo}
               src={logo}
-              height={50}
+              height={45}
               alt="Reader Zone"
             />
           </div>
