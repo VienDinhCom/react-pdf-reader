@@ -14,7 +14,12 @@ export default function UploadButton({ getFiles }) {
         }}
         accept="application/pdf,text/plain"
       ></input>
-      <img className={classes.uploadIcon} src={uploadIcon} alt="Upload Files" />
+      <img
+        className={classes.uploadIcon}
+        src={uploadIcon}
+        height={22}
+        alt="Upload Files"
+      />
       Upload Files
     </label>
   );
