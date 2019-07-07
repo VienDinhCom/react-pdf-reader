@@ -30,7 +30,7 @@ export default function PDFViewer({ file }) {
 
       canvasEl.current.removeAttribute('style');
       canvasEl.current.style.height = newHeight;
-    }, 1000);
+    }, 300);
   }
 
   useEffect(() => {
