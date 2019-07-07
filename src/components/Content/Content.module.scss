@@ -36,11 +36,21 @@
   color: #2D1F3F;
   margin: 70px 0 50px 0;
   line-height: 36px;
+  word-break: break-all;
+
+  @media (max-width: 1024px) {
+    font-size: 24px;
+  }
 }
 
 .fileIcon {
   margin-right: 20px;
   float: left;
+  height: 45px;
+
+  @media (max-width: 1024px) {
+    height: 32px;
+  }
 }
 
 .content {

@@ -60,7 +60,6 @@ export default function Content({
               <img
                 className={classes.fileIcon}
                 src={fileIcon}
-                height={40}
                 alt={activeFile.name}
               />{' '}
               {activeFile.name}
