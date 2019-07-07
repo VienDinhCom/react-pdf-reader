@@ -34,6 +34,10 @@ export default function Content({
     false
   );
 
+  function _openFile(id) {
+    setActiveFileId(id);
+  }
+
   return (
     <article className={classes.root}>
       {isMobile && (
@@ -90,7 +94,7 @@ export default function Content({
                     ? ` ${classes.fileItemActive}`
                     : '')
                 }
-                onClick={() => setActiveFileId(id)}
+                onClick={() => _openFile(id)}
               >
                 <img
                   className={classes.fileItemImg}
