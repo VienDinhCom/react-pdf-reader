@@ -39,6 +39,8 @@ export default function PDFViewer({ file }) {
     }, 300);
   }
 
+  useEffect(() => setCurrentPage(1), [file.pdfURL]);
+
   useEffect(() => {
     if (isMobile) _scaleCanvas();
 
