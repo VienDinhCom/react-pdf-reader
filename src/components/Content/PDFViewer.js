@@ -39,8 +39,10 @@ export default function PDFViewer({ file }) {
     }, 300);
   }
 
+  // Set current page to 1 on load
   useEffect(() => setCurrentPage(1), [file.pdfURL]);
 
+  // Scale content when window resizes
   useEffect(() => {
     if (isMobile) _scaleCanvas();
 
