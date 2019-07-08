@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { usePdf } from 'react-pdf-js';
 import classes from './PDFViewer.module.scss';
+import useMedia from '../../hooks/useMedia';
 import useWindowSize from '../../hooks/useWindowSize';
 
 let timeOutId = null;
@@ -9,6 +10,12 @@ export default function PDFViewer({ file }) {
   const canvasEl = useRef(null);
   const [currentPage, setCurrentPage] = useState(1);
   const windowSize = useWindowSize();
+
+  const isMobile = useMedia(
+    ['(max-width: 1024px)', '(min-width: 1025px)'],
+    [true, false],
+    false
+  );
 
   const [loading, numPages] = usePdf({
     file: file.pdfURL,
@@ -34,10 +41,10 @@ export default function PDFViewer({ file }) {
   }
 
   useEffect(() => {
-    _scaleCanvas();
+    if (isMobile) _scaleCanvas();
 
     return () => clearTimeout(timeOutId);
-  }, [windowSize, loading, currentPage]);
+  }, [windowSize, loading, currentPage, isMobile]);
 
   function _previousPage() {
     const newPage = currentPage - 1;
