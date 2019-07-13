@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Sidebar.module.scss';
 import logo from '../../images/logo.png';
 import fileIcon from '../../images/file-icon-sm.svg';
-import uploadIcon from '../../images/upload-icon.svg';
+import UploadButton from '../UploadButton/UploadButton';
 
 export default function Sidebar({
   getFiles,
@@ -11,8 +11,6 @@ export default function Sidebar({
   setActiveFileId,
 }) {
   const fileArray = [];
-
-  // console.log(files);
 
   for (const id in files) {
     if (files.hasOwnProperty(id)) {
@@ -60,23 +58,7 @@ export default function Sidebar({
         </ul>
       </section>
       <footer className={classes.footer}>
-        <label className={classes.upload} htmlFor="uploadFile">
-          <input
-            className={classes.uploadInput}
-            id="uploadFile"
-            type="file"
-            onChange={event => {
-              if (event.target.files.length) getFiles(event.target.files[0]);
-            }}
-            accept="application/pdf,text/plain"
-          ></input>
-          <img
-            className={classes.uploadIcon}
-            src={uploadIcon}
-            alt="Upload Files"
-          />
-          Upload Files
-        </label>
+        <UploadButton getFiles={getFiles}></UploadButton>
       </footer>
     </aside>
   );

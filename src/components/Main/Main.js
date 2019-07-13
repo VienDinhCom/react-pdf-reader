@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
 import classes from './Main.module.scss';
+import useMedia from '../../hooks/useMedia';
 
 function getPlainTextContent(file) {
   const reader = new FileReader();
@@ -21,6 +22,12 @@ function getPlainTextContent(file) {
 export default function Main() {
   const [files, setFiles] = useState({});
   const [activeFileId, setActiveFileId] = useState(null);
+
+  const isDesktop = useMedia(
+    ['(max-width: 1024px)', '(min-width: 1025px)'],
+    [false, true],
+    true
+  );
 
   async function _addFiles(file) {
     const id = Date.now();
@@ -63,13 +70,20 @@ export default function Main() {
 
   return (
     <main className={classes.root}>
-      <Sidebar
+      {isDesktop && (
+        <Sidebar
+          getFiles={_addFiles}
+          files={files}
+          activeFileId={activeFileId}
+          setActiveFileId={id => setActiveFileId(id)}
+        ></Sidebar>
+      )}
+      <Content
         getFiles={_addFiles}
         files={files}
         activeFileId={activeFileId}
         setActiveFileId={id => setActiveFileId(id)}
-      ></Sidebar>
-      <Content file={files[activeFileId]}></Content>
+      ></Content>
     </main>
   );
 }
