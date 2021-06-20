@@ -1,3 +1,14 @@
+# React PDF Reader
+
+## Experience
+
+In this project, I have used:
+
+- FileReader API to read files
+- React PDF JS to view PDF files
+- Normalize CSS to reset default styles
+- CSS Modules to write component-scoped styles
+
 ## Usage
 
 ### `npm run dev`
